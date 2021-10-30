@@ -17,4 +17,20 @@ contract App is ReentrancyGuard {
         address payable owner;
         uint price;
     }
+
+    function getNFTs() public {
+
+    }
+
+    function postNFT() public {
+
+    }
+
+    function sellNFT() public {
+
+    }
+
+    function payForNFT() public {
+
+    }
 }
