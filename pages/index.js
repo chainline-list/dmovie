@@ -1,8 +1,83 @@
 import Head from 'next/head'
 import styles from '../styles/Home.module.css'
 import {ethers} from 'ethers'
+import Web3Modal from 'web3modal'
+import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
+import App from '../artifacts/contracts/App.sol/App.json'
+import { useEffect, useRef, useState } from 'react'
+import {nftAddress, appAddress} from '../utils'
 
 export default function Home() {
+  
+  const [account, setAccount] = useState('')
+  const [nftData, setNftData] = useState()
+  
+  const getAccount = async () => {
+    const ethereum = window.ethereum
+    
+    if (ethereum !== 'undefined') {
+      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+      setAccount(accounts[0])
+      //console.log(accounts[0])
+    } else {
+      window.alert("Install metamask to get started !")
+      return
+    }
+  }
+
+
+  const getBlockChainData = async () => {
+    const provider = new ethers.providers.JsonRpcProvider()
+    const tokenContract = new ethers.Contract(nftAddress,NFT.abi, provider)
+    const appContract = new ethers.Contract(appAddress,App.abi, provider)
+    
+    try {
+      const data = await appContract.getNFTs()
+      const items = await Promise.all(data.map(async i => {
+        const tokenUri = await tokenContract.tokenURI(i.tokenId)
+        const meta = await axios.get(tokenUri)
+        let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
+        let item = {
+          price,
+          tokenId: i.tokenId.toNumber(),
+          owner: i.owner,
+          image: meta.data.image,
+          /*name:meta.data.name,
+          description: meta.data.description*/
+        }
+        return item
+      }))
+      console.log(items)
+    } catch(err) {
+      console.log(err)
+    }
+  }
+
+  const mintNft = async (e) => {
+
+    e.preventDefault()
+    const nft = nftData
+    console.log(nft)
+    
+    const web3modal = new Web3Modal()
+    const  connection = await web3modal.connect()
+    const provider = new ethers.providers.Web3Provider(connection)
+    const signer = provider.getSigner()
+    const tokenContract = new ethers.Contract(nftAddress,NFT.abi, signer)
+    const appContract = new ethers.Contract(appAddress,App.abi, signer)
+    const tx1 = await tokenContract.createToken('https://localhost:5000')
+    const tx2 = await tokenContract.createToken('https://llocalhost:5000')
+    console.log(tx1.value)
+    console.log(tx2.value)
+    /*await appContract.mintNFT(nftAddress, tx.value.toNumber(), 1, 1 )
+    getBlockChainData()*/
+  }
+
+  useEffect(() => {
+    getAccount()
+    
+    //getBlockChainData()
+  }, [])
 
   
 
@@ -15,7 +90,11 @@ export default function Home() {
       </Head>
 
       <main>
-        Hello
+        <form onSubmit={mintNft}>
+          <input type="file" onChange={(e) => setNftData(e.target.files[0])} name="" id="" />
+          <button type="submit">send</button>
+          <img src='/' alt="" />
+        </form>
       </main>
 
 
