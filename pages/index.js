@@ -65,10 +65,12 @@ export default function Home() {
     const signer = provider.getSigner()
     const tokenContract = new ethers.Contract(nftAddress,NFT.abi, signer)
     const appContract = new ethers.Contract(appAddress,App.abi, signer)
-    const tx1 = await tokenContract.createToken('https://localhost:5000')
-    const tx2 = await tokenContract.createToken('https://llocalhost:5000')
-    console.log(tx1.value)
-    console.log(tx2.value)
+    const transaction = await tokenContract.createToken('https://localhost:5000')
+    let tx = await transaction.wait()
+    let event = tx.events[0]
+    let value = event.args[2]
+    let tokenId = value.toNumber()
+    console.log(tokenId)
     /*await appContract.mintNFT(nftAddress, tx.value.toNumber(), 1, 1 )
     getBlockChainData()*/
   }
