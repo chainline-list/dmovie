@@ -33,7 +33,7 @@ export default function Home() {
     
     try {
       const data = await appContract.getNFTs()
-      /*const items = await Promise.all(data.map(async i => {
+      const items = await Promise.all(data.map(async i => {
         const tokenUri = await tokenContract.tokenURI(i.tokenId)
         const meta = await axios.get(tokenUri)
         let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
@@ -43,11 +43,11 @@ export default function Home() {
           owner: i.owner,
           image: meta.data.image,
           /*name:meta.data.name,
-          description: meta.data.description
+          description: meta.data.description*/
         }
         return item
-      }))*/
-      console.log(data)
+      }))
+      //console.log(data)
     } catch(err) {
       console.log(err)
     }
