@@ -35,19 +35,19 @@ export default function Home() {
       const data = await appContract.getNFTs()
       const items = await Promise.all(data.map(async i => {
         const tokenUri = await tokenContract.tokenURI(i.tokenId)
-        const meta = await axios.get(tokenUri)
+        /*const meta = await axios.get(tokenUri)*/
         let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
         let item = {
           price,
           tokenId: i.tokenId.toNumber(),
           owner: i.owner,
-          image: meta.data.image,
+          /*image: meta.data.image,
           /*name:meta.data.name,
           description: meta.data.description*/
         }
         return item
       }))
-      //console.log(data)
+      console.log(items)
     } catch(err) {
       console.log(err)
     }
@@ -70,15 +70,13 @@ export default function Home() {
     let event = tx.events[0]
     let value = event.args[2]
     let tokenId = value.toNumber()
-    console.log(tokenId)
     await appContract.mintNFT(nftAddress, tokenId, 1, 1 )
-    getBlockChainData()
   }
 
   useEffect(() => {
     getAccount()
     
-    //getBlockChainData()
+    getBlockChainData()
   }, [])
 
   

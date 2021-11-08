@@ -15,7 +15,6 @@ contract NFT is ERC721URIStorage {
 
     constructor(address _marketAddress) ERC721("ENTERTAINMENT", "ETT") {
         contractAddress = _marketAddress;
-        _tokenIds.increment();
     }
 
     function createToken(string memory _tokenURI) public returns (uint) {

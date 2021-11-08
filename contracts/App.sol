@@ -23,7 +23,7 @@ contract App is ReentrancyGuard {
     function getNFTs() public view returns (Item[] memory) {
         uint itemCount = _itemIds.current();
         Item[] memory items = new Item[](itemCount);
-        for (uint i = 0; i <= itemCount; i++) {
+        for (uint i = 0; i < itemCount; i++) {
             items[i] = idToMarketItem[i + 1];
         }
         return items;
