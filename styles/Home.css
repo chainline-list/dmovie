@@ -1,0 +1,13 @@
+.app {
+  height: calc(100vh - 3rem);
+  padding: 0 0.5rem;
+  color: black;
+}
+
+.app__addButton {
+  position: fixed;
+  top: 80%;
+  right: 10%;
+  background-color: black;
+}
+
