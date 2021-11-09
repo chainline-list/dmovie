@@ -5,24 +5,18 @@ import App from '../artifacts/contracts/App.sol/App.json'
 import { useEffect, useState } from 'react'
 import {nftAddress, appAddress} from '../utils'
 import Link from 'next/link'
+import identicon from 'identicon'
+import Web3modal from 'web3modal'
 
 export default function Home() {
   
   const [account, setAccount] = useState('')
   const [items, setItems] = useState([])
-  
-  const getAccount = async () => {
-    const ethereum = window.ethereum
-    
-    if (ethereum !== 'undefined') {
-      const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-      setAccount(accounts[0])
-      //console.log(accounts[0])
-    } else {
-      window.alert("Install metamask to get started !")
-      return
-    }
-  }
+  /*const web3modal = new Web3modal()
+  const Provider = web3modal.connect()
+  Provider.on("accountsChanged", (accounts) => {
+    console.log(accounts);
+  });*/
 
 
   const getBlockChainData = async () => {
@@ -54,7 +48,7 @@ export default function Home() {
   }
 
   useEffect(() => {
-    getAccount()
+    //getAccount()
     
     getBlockChainData()
   }, [])

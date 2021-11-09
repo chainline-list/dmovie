@@ -24,10 +24,10 @@ function mint() {
 
     return (
         <div>
-            <form>
+            <form onClick= {mintNft}>
                 <input type="text" />
                 <input type="text" />
-                <input type="text" />
+                <input type="number" />
                 <input type="text" />
                 <input type="text" />
                 <button type="submit">Mint</button>
