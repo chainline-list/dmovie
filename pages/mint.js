@@ -3,37 +3,62 @@ import Web3modal from 'web3modal'
 import {nftAddress,appAddress} from '../utils'
 import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import App from '../artifacts/contracts/App.sol/App.json'
+import router from 'next/router'
+import {Web3Storage} from 'web3.storage'
+import { useState } from 'react'
 
 
 function mint() {
 
-    const mintNft = async() => {
-        const web3modal = new Web3modal()
+    const [file, setFile] = useState()
+
+    const apiKey = process.env.NEXT_PUBLIC_API_TOKEN 
+
+    const mintNft = async(e) => {
+        e.preventDefault()
+        console.log(file)
+        const web3storage = new Web3Storage({token:apiKey})
+        const cid = await web3storage.put(file)
+        console.log(cid)
+
+
+        /*const web3modal = new Web3modal()
         const connection = await web3modal.connect()
         const provider = new ethers.providers.Web3Provider(connection)
-        const signer = await provider.getSigner()
+        const signer = provider.getSigner()
         const nftContract = new ethers.Contract(nftAddress, NFT.abi, signer)
         const appContract = new ethers.Contract(appAddress, App.abi, signer)
         const transaction = await nftContract.createToken('http:lolo.com')
-        const tx = transaction.wait()
+        const tx = await transaction.wait()
         const event = tx.events[0] 
         const tokenId = event.args[2].toNumber() 
         await appContract.mintNFT(nftAddress, tokenId, 1, 1)
+        router.push('/')*/
+        
     }
 
 
     return (
-        <div>
-            <form onClick= {mintNft}>
-                <input type="text" />
-                <input type="text" />
-                <input type="number" />
-                <input type="text" />
-                <input type="text" />
+        <div className='mint'>
+
+            <h2>Upload your video here !</h2>
+            
+            <form className='mint__form' onSubmit= {mintNft}>
+                <input type="text" placeholder='Enter title ...'/>
+                <textarea type="text" placeholder='Enter description'/>
+                <input type="number" placeholder='Enter your watching price' />
+                <input type="number" placeholder='Enter selling price'/>
+                <input type="file" />
+                <input type="file" onChange={(e) => setFile(e.target.files)} />
+                <img src="" alt="" />
                 <button type="submit">Mint</button>
             </form>
+             <img src="" alt="" />
+           
         </div>
+        
     )
 }
 
 export default mint
+/**/

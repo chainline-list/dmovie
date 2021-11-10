@@ -4,6 +4,12 @@
   color: black;
 }
 
+.app__content {
+  padding-top: 1rem;
+  /*display: flex;
+  overflow: scroll;*/
+}
+
 .app__addButton {
   position: fixed;
   top: 80%;

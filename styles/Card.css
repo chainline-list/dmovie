@@ -1,0 +1,50 @@
+.card {
+    height: 15rem;
+    width: 15rem;
+    background-color: red;
+    border-radius: 19px;
+    overflow: hidden;
+    position: relative;
+    margin: 1rem;
+}
+
+.card>.thumbnail {
+    height: 100%;
+    background-color: black;
+}
+
+.card>.thumbnail>img {
+    height: 100%;
+    width: 100%;
+}
+
+.card>.description {
+    height: 100%;
+    width: 100%;
+    background-color: rgba(8, 8, 8, 0.7);
+    color: white;
+    padding: 20px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    /*display: flex;
+    flex-direction: column;
+    justify-content: flex-end;*/
+    display: none;
+    transition: 400ms ease-in-out;
+}
+
+.card:hover .description {
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    transition: 400ms ease-in-out;
+}
+
+.card>.description>h1 {
+    font-size: 14px;
+}
+
+.card>.description>span {
+    font-size: 12px;
+}

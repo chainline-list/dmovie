@@ -1,0 +1,29 @@
+.mint {
+    display: flex;
+    height: calc(100vh - 3rem);
+    width: 100vw;
+    background-color: gray;
+    justify-content: center;
+    align-items: center;
+}
+
+.mint__form {
+    height: 70vh;
+    width: 50vw;
+    background-color: chocolate;
+    display: flex;
+    flex-direction: column;
+}
+
+.mint__form>form {
+    flex: 0.6;
+    background-color: rgb(63, 41, 26);
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+}
+
+.mint__form>img {
+    flex: 0.4;
+    background-color: cornflowerblue;
+}

@@ -7,6 +7,7 @@ import {nftAddress, appAddress} from '../utils'
 import Link from 'next/link'
 import identicon from 'identicon'
 import Web3modal from 'web3modal'
+import Card from '../Components/Card'
 
 export default function Home() {
   
@@ -63,9 +64,9 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main>
-        Welcome to this page, Here are the nfts, 
-        <p>{items.map(i => i.price)}</p>
+      <main className='app__content'>
+
+        {items.map(i => <Card/>)}
         
       </main>
 
