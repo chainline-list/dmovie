@@ -45,13 +45,16 @@ function mint() {
             
             <form className='mint__form' onSubmit= {mintNft}>
                 <input type="text" placeholder='Enter title ...'/>
-                <textarea type="text" placeholder='Enter description'/>
-                <input type="number" placeholder='Enter your watching price' />
+                <textarea type="textarea" rows={4} placeholder='Enter description'/>
+                <input type="number" placeholder='Enter your watching price (Optional)' />
                 <input type="number" placeholder='Enter selling price'/>
-                <input type="file" />
-                <input type="file" onChange={(e) => setFile(e.target.files)} />
-                <img src="" alt="" />
-                <button type="submit">Mint</button>
+                <input type="file" className="custom-video-input"/>
+                <input type="file" className='custom-file-input'onChange={(e) => setFile(e.target.files)} />
+                <section>
+                    {file && <img src={URL.createObjectURL(file[0])} alt="" />}
+                    <button type="submit">upload</button>
+                </section>
+                
             </form>
              <img src="" alt="" />
            

@@ -3,27 +3,192 @@
     height: calc(100vh - 3rem);
     width: 100vw;
     background-color: gray;
-    justify-content: center;
+    justify-content: space-evenly;
     align-items: center;
+    flex-direction: column;
 }
 
 .mint__form {
-    height: 70vh;
+    height: 80vh;
     width: 50vw;
     background-color: chocolate;
     display: flex;
+    align-items: center;
+    /*justify-content: space-evenly;*/
     flex-direction: column;
+    padding: 30px;
 }
 
-.mint__form>form {
-    flex: 0.6;
-    background-color: rgb(63, 41, 26);
-    display: flex;
-    flex-direction: column;
+.mint__form>input {
     width: 70%;
+    height: 2rem;
+    padding: 20px;
+    border: none;
+    outline: none;
+    border-radius: 9px;
+    margin-bottom: 1rem;
 }
 
-.mint__form>img {
-    flex: 0.4;
-    background-color: cornflowerblue;
+.mint__form>textarea {
+    width: 70%;
+    padding: 20px;
+    border: none;
+    outline: none;
+    border-radius: 9px;
+    margin-bottom: 1rem;
 }
+
+.mint__form>input[type='file'] {
+    height: 3rem;
+    padding: 0;
+    border: 2px solid white;
+}
+
+.mint__form img {
+    height: 8rem;
+    width: 15rem;
+}
+
+
+
+.custom-video-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-video-input::before {
+    content: 'Upload video';
+    display: inline-block;
+    text-transform: uppercase;
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+    height: 2rem;
+    font-size: 12px;
+    padding: 10px;
+    width: 6rem;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+  }
+  .custom-video-input:hover::before {
+    border-color: black;
+  }
+  .custom-video-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+  }
+  .custom-file-input::before {
+    content: 'Upload thumbnail';
+    display: inline-block;
+    background: linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    text-transform: uppercase;
+    background-color: white;
+    color: black;
+    border-radius: 3px;
+    height: 2rem;
+    font-size: 12px;
+    padding: 10px;
+    width: 10rem;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+  }
+  .custom-file-input:hover::before {
+    border-color: black;
+  }
+  .custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+.mint__form button {
+    height: 2rem;
+    width: 30%;
+    border: none;
+    text-transform: uppercase;
+    border: none;
+    font-weight: 700;
+    border-radius: 9px;
+}
+
+
+.mint__form>section {
+    display: flex;
+    /*background-color: white;*/
+    width: 70%;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width:1130px) {
+    .mint__form img {
+        width: 10rem;
+    }
+    .mint__form button {
+        width: 42%;
+    }
+}
+
+@media screen and (max-width:950px) {
+
+    .mint__form {
+        width: 80vw;
+    }
+    .mint__form section {
+        flex-direction: column;
+    }
+    .mint__form img {
+        width: 70%;
+        margin-bottom: 2rem;
+        height: 10rem;
+    }
+
+    .mint__form button {
+        width: 90%;
+        
+    }
+
+    .custom-file-input::before, .custom-video-input::before {
+        font-size: 10px;
+        width: 7rem;
+    }
+}
+
+@media screen and (max-width:540px) {
+
+    .mint__form {
+        width: 95vw;
+    }
+
+    .mint__form> input, .mint__form>textarea {
+        width: 95%;
+    }
+
+    .mint__form img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width:360px) {
+
+    .mint__form {
+        width: 99vw;
+    }
+
+    .mint__form> input, .mint__form>textarea {
+        width: 99%;
+    }
+}
+
+
+
