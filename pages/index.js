@@ -7,7 +7,9 @@ import {nftAddress, appAddress} from '../utils'
 import Link from 'next/link'
 import identicon from 'identicon'
 import Web3modal from 'web3modal'
+import {Web3Storage} from 'web3.storage'
 import Card from '../Components/Card'
+import axios from 'axios'
 
 export default function Home() {
   
@@ -24,24 +26,16 @@ export default function Home() {
     const provider = new ethers.providers.JsonRpcProvider()
     const tokenContract = new ethers.Contract(nftAddress,NFT.abi, provider)
     const appContract = new ethers.Contract(appAddress,App.abi, provider)
+    const storage = new Web3Storage({token: process.env.NEXT_PUBLIC_API_TOKEN})
     
     try {
       const data = await appContract.getNFTs()
       const items = await Promise.all(data.map(async i => {
         const tokenUri = await tokenContract.tokenURI(i.tokenId)
-        /*const meta = await axios.get(tokenUri)*/
-        let price = ethers.utils.formatUnits(i.price.toString(), 'ether')
-        let item = {
-          price,
-          tokenId: i.tokenId.toNumber(),
-          owner: i.owner,
-          /*image: meta.data.image,
-          /*name:meta.data.name,
-          description: meta.data.description*/
-        }
-        return item
+        const meta = await axios.get(tokenUri)
+        const nft = meta.data
+        return nft
       }))
-      console.log(items)
       setItems(items)
     } catch(err) {
       console.log(err)
@@ -49,8 +43,6 @@ export default function Home() {
   }
 
   useEffect(() => {
-    //getAccount()
-    
     getBlockChainData()
   }, [])
 
@@ -66,7 +58,7 @@ export default function Home() {
 
       <main className='app__content'>
 
-        {items.map(i => <Card/>)}
+        {items.map(({title, description, imgLink, videoLink}) => <Card key={description} src = {imgLink} title={title} description={description} srcVid={videoLink}/>)}
         
       </main>
 

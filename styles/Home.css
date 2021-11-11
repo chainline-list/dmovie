@@ -6,8 +6,8 @@
 
 .app__content {
   padding-top: 1rem;
-  /*display: flex;
-  overflow: scroll;*/
+  display: flex;
+  overflow: scroll;
 }
 
 .app__addButton {
