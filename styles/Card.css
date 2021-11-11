@@ -1,11 +1,19 @@
 .card {
-    height: 15rem;
-    width: 15rem;
+    flex: 0.5;
+    /*height: 15rem;*/
+    width: 100%;
     background-color: red;
     border-radius: 19px;
     overflow: hidden;
     position: relative;
     margin: 1rem;
+    transition: 400ms ease-in-out;
+    transform: scale(1);
+}
+
+.card:hover {
+    transition: 400ms ease-in-out;
+    transform: scale(1.04);
 }
 
 .card>.thumbnail {

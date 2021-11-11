@@ -67,12 +67,12 @@ function mint() {
             <h2>Upload your video here !</h2>
             
             <form className='mint__form' onSubmit= {mintNft}>
-                <input type="text" placeholder='Enter title ...' onChange={(e) => setTitle(e.target.value)}/>
-                <textarea type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
-                <input type="number" placeholder='Enter your watching price (Optional)' onChange={(e) => setWatchingPrice(e.target.value)} />
-                <input type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
-                <input type="file" className="custom-video-input" onChange={(e) => setVideo(e.target.files[0])}/>
-                <input type="file" className='custom-file-input'onChange={uploadThumbnail} />
+                <input required type="text" placeholder='Enter title ...' onChange={(e) => setTitle(e.target.value)}/>
+                <textarea required type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
+                <input required type="number" placeholder='Enter your watching price (Optional)' onChange={(e) => setWatchingPrice(e.target.value)} />
+                <input required type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
+                <input required type="file" className="custom-video-input" onChange={(e) => setVideo(e.target.files[0])}/>
+                <input required type="file" className='custom-file-input'onChange={uploadThumbnail} />
                 <section>
                     {thumbnailLink && <img src={thumbnailLink} alt="" />}
                     <button type="submit">upload</button>

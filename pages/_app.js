@@ -2,14 +2,12 @@ import '../styles/globals.css'
 import '../styles/Home.css'
 import '../styles/Card.css'
 import '../styles/Mint.css'
+import NavBar from '../Components/NavBar'
 
 function MyApp({ Component, pageProps }) {
   return (
     <>
-    <nav>
-      <section>Name</section>
-      <section>cartoon</section>
-    </nav>
+    <NavBar/>
     <Component {...pageProps} />
     </>
   )
