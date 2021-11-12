@@ -23,5 +23,9 @@ nav {
   padding-left: 15px;
   padding-right: 15px;
   height: 3rem;
-  background-color: black;
+  background-color: rgb(67, 4, 73);
+}
+
+nav img {
+  border-radius: 9px;
 }

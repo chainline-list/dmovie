@@ -1,12 +1,11 @@
 .card {
-    flex: 0.5;
-    /*height: 15rem;*/
+    /*height: 15rem;
+    width: 15rem;*/
     width: 100%;
-    background-color: red;
     border-radius: 19px;
     overflow: hidden;
-    position: relative;
-    margin: 1rem;
+    /*position: relative;
+    margin-right: 1rem;*/
     transition: 400ms ease-in-out;
     transform: scale(1);
 }
@@ -18,11 +17,10 @@
 
 .card>.thumbnail {
     height: 100%;
-    background-color: black;
 }
 
 .card>.thumbnail>img {
-    height: 110%;
+    height: 100%;
     width: 100%;
     object-fit: cover;
 }
@@ -36,18 +34,13 @@
     position: absolute;
     top: 0;
     left: 0;
-    /*display: flex;
-    flex-direction: column;
-    justify-content: flex-end;*/
     display: none;
-    transition: 400ms ease-in-out;
 }
 
 .card:hover .description {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    transition: 400ms ease-in-out;
 }
 
 .card>.description>h1 {

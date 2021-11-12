@@ -1,10 +1,10 @@
 
-const hre = require("hardhat");
+//const hre = require("hardhat");
 
 async function main() {
   
   const NFT = await hre.ethers.getContractFactory("NFT");
-  const App = await hre.ethers.getContractFactory("App");
+  const App = await hre.ethers.getContractFactory("App")
   
   const app = await App.deploy()
   await app.deployed()
@@ -17,8 +17,7 @@ async function main() {
   console.log("NFT deployed to:", nft.address);
 }
 
-// We recommend this pattern to be able to use async/await everywhere
-// and properly handle errors.
+
 main()
   .then(() => process.exit(0))
   .catch((error) => {

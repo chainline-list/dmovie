@@ -10,9 +10,9 @@ function NavBar() {
         const ethereum = window.ethereum 
         if (ethereum !== 'undefined') {
           const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
-          console.log(accounts[0])
+          //console.log(accounts[0])
           identicon.generate({id:accounts[0], size:30}, (err , buffer) => {
-              setBuffer(buffer)
+            setBuffer(buffer)
           })
         }
     }

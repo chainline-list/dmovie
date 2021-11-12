@@ -46,7 +46,7 @@ function mint() {
         const transaction = await nftContract.createToken(`https://${nftURL}.ipfs.dweb.link/${title}`)
         const tx = await transaction.wait()
         const event = tx.events[0] 
-        const tokenId = event.args[2].toNumber() 
+        const tokenId = event.args[2].toNumber()
         await appContract.mintNFT(nftAddress, tokenId, 1, 1)
         router.push('/')
         

@@ -16,7 +16,8 @@ contract App is ReentrancyGuard {
         address payable owner;
         uint price;
         uint watchingFee;
-        bool accessible;
+        uint viewersCount;
+        address[] Viewers;
     }
     mapping (uint256 => Item) private idToMarketItem;
 
@@ -29,10 +30,19 @@ contract App is ReentrancyGuard {
         return items;
     }
 
-    function mintNFT(address _nftContract, uint tokenId, uint price, uint watchingFee) public {
+    function mintNFT(address _nftContract, uint _tokenId, uint _price, uint _watchingFee) public {
         _itemIds.increment();
         uint itemID = _itemIds.current();
-        idToMarketItem[itemID] = Item(itemID, _nftContract, tokenId, payable(msg.sender), price, watchingFee, false);                                                                                                                                                                                                                                      Item(itemID, _nftContract, tokenId, payable(msg.sender), price, watchingFee, false);
+        Item memory item;
+        item.itemId = itemID;
+        item.nftContract = _nftContract;
+        item.owner = payable(msg.sender);
+        item.price = _price;
+        item.tokenId = _tokenId;
+        item.watchingFee = _watchingFee;
+        item.viewersCount = 0;
+        item.Viewers[item.viewersCount] = msg.sender;
+        idToMarketItem[itemID] = item;
     }
 
     function buyNFT(address _nftContract, uint _amount, uint _nftId) public payable {
@@ -44,10 +54,12 @@ contract App is ReentrancyGuard {
         /*payable(owner).transfer(listingPrice);*/
     }
 
-    function payAccessibility(uint _amount, uint _nftId) public payable {
-        Item storage item = idToMarketItem[_nftId];
+    function payAccessibility(uint _amount, uint _itemId) public payable {
+        Item storage item = idToMarketItem[_itemId];
         require(_amount == item.watchingFee, "Pay to right amount please");
         item.owner.transfer(_amount);
-        item.accessible = true;
+        item.viewersCount +=1;
+        item.Viewers[item.viewersCount] = msg.sender;
+        
     }
 }
