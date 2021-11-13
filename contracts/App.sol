@@ -33,16 +33,8 @@ contract App is ReentrancyGuard {
     function mintNFT(address _nftContract, uint _tokenId, uint _price, uint _watchingFee) public {
         _itemIds.increment();
         uint itemID = _itemIds.current();
-        Item memory item;
-        item.itemId = itemID;
-        item.nftContract = _nftContract;
-        item.owner = payable(msg.sender);
-        item.price = _price;
-        item.tokenId = _tokenId;
-        item.watchingFee = _watchingFee;
-        item.viewersCount = 0;
-        item.Viewers[item.viewersCount] = msg.sender;
-        idToMarketItem[itemID] = item;
+        idToMarketItem[itemID] = Item(itemID, _nftContract, _tokenId, payable(msg.sender), _price, _watchingFee, 0, new address[](0));
+        idToMarketItem[itemID].Viewers.push(msg.sender);
     }
 
     function buyNFT(address _nftContract, uint _amount, uint _nftId) public payable {

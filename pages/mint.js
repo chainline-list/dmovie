@@ -17,11 +17,16 @@ function mint() {
     const [watchingPrice, setWatchingPrice] = useState()
     const [sellingPrice, setSellingPrice] = useState()
     const [thumbnailLink, setThumbnailLink] = useState()
+    const [error, setError] = useState()
 
     const apiKey = process.env.NEXT_PUBLIC_API_TOKEN 
 
     const mintNft = async(e) => {
         e.preventDefault()
+        if( !title || !description  || !watchingPrice || !sellingPrice || !video || !file ) {
+            setError('Error : Fill all the fields')
+            return
+        }
         const web3storage = new Web3Storage({token:apiKey})
         const imgCID = await web3storage.put([new File([new Blob([file])], `${title}`)])
         const videoCID = await web3storage.put([new File([new Blob([video])], `${title}`)])
@@ -64,15 +69,15 @@ function mint() {
     return (
         <div className='mint'>
 
-            <h2>Upload your video here !</h2>
+            {error ? <h2 className=' error'>{error}</h2> : <h2 className='title'>Upload your video ! </h2>}
             
-            <form className='mint__form' onSubmit= {mintNft}>
-                <input required type="text" placeholder='Enter title ...' onChange={(e) => setTitle(e.target.value)}/>
-                <textarea required type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
-                <input required type="number" placeholder='Enter your watching price (Optional)' onChange={(e) => setWatchingPrice(e.target.value)} />
-                <input required type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
-                <input required type="file" className="custom-video-input" onChange={(e) => setVideo(e.target.files[0])}/>
-                <input required type="file" className='custom-file-input'onChange={uploadThumbnail} />
+            <form className='mint__form' onSubmit= {mintNft} onFocus={() => setError('')}>
+                <input type="text" placeholder='Enter title ...' onChange={(e) => setTitle(e.target.value)}/>
+                <textarea type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
+                <input type="number" placeholder='Enter your watching price (Optional)' onChange={(e) => setWatchingPrice(e.target.value)} />
+                <input type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
+                <input type="file" className="custom-video-input" onChange={(e) => setVideo(e.target.files[0])}/>
+                <input type="file" className='custom-file-input'onChange={uploadThumbnail} />
                 <section>
                     {thumbnailLink && <img src={thumbnailLink} alt="" />}
                     <button type="submit">upload</button>
