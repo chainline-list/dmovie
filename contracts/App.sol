@@ -51,7 +51,7 @@ contract App is ReentrancyGuard {
         require(_amount == item.watchingFee, "Pay to right amount please");
         item.owner.transfer(_amount);
         item.viewersCount +=1;
-        item.Viewers[item.viewersCount] = msg.sender;
+        item.Viewers.push(msg.sender);
         
     }
 }

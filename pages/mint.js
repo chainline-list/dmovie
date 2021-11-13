@@ -18,11 +18,13 @@ function mint() {
     const [sellingPrice, setSellingPrice] = useState()
     const [thumbnailLink, setThumbnailLink] = useState()
     const [error, setError] = useState()
+    const [loading, setLoading] = useState(false)
 
     const apiKey = process.env.NEXT_PUBLIC_API_TOKEN 
 
     const mintNft = async(e) => {
         e.preventDefault()
+        setLoading(true)
         if( !title || !description  || !watchingPrice || !sellingPrice || !video || !file ) {
             setError('Error : Fill all the fields')
             return
@@ -53,6 +55,7 @@ function mint() {
         const event = tx.events[0] 
         const tokenId = event.args[2].toNumber()
         await appContract.mintNFT(nftAddress, tokenId, 1, 1)
+        setLoading(false)
         router.push('/')
         
     }
@@ -80,7 +83,7 @@ function mint() {
                 <input type="file" className='custom-file-input'onChange={uploadThumbnail} />
                 <section>
                     {thumbnailLink && <img src={thumbnailLink} alt="" />}
-                    <button type="submit">upload</button>
+                    {!loading && <button type="submit">upload</button>}
                 </section>
                 
             </form>
