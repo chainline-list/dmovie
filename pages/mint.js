@@ -8,7 +8,7 @@ import {Web3Storage} from 'web3.storage'
 import { useState } from 'react'
 
 
-function mint() {
+function Mint() {
 
     const [file, setFile] = useState([])
     const [video, setVideo] = useState([])
@@ -94,5 +94,5 @@ function mint() {
     )
 }
 
-export default mint
+export default Mint
 /**/
