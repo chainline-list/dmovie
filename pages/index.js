@@ -24,7 +24,16 @@ export default function Home() {
         console.log(i)
         const tokenUri = await tokenContract.tokenURI(i.tokenId)
         const meta = await axios.get(tokenUri)
-        const nft = meta.data
+        const metadata = meta.data
+        const nftId = i.itemId 
+        const watchingFee = i.watchingFee
+        const price = i.price
+        const nft = {
+          nftId,
+          watchingFee,
+          price,
+          metadata
+        }
         return nft
       }))
       setItems(items)
@@ -50,7 +59,7 @@ export default function Home() {
 
       <main className='app__content'>
 
-        {items.map(({title, description, imgLink, videoLink}) => <Card key={description} src = {imgLink} title={title} description={description} srcVid={videoLink}/>)}
+        {items.map(({nftId, watchingFee, price, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price}/>)}
         
       </main>
 

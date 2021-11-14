@@ -27,6 +27,7 @@ function Mint() {
         setLoading(true)
         if( !title || !description  || !watchingPrice || !sellingPrice || !video || !file ) {
             setError('Error : Fill all the fields')
+            setLoading(false)
             return
         }
         const web3storage = new Web3Storage({token:apiKey})

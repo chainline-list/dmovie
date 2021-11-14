@@ -4,11 +4,13 @@ pragma solidity ^0.8.5;
 import '@openzeppelin/contracts/token/ERC721/ERC721.sol';
 import '@openzeppelin/contracts/utils/Counters.sol';
 import '@openzeppelin/contracts/security/ReentrancyGuard.sol';
+import "@chainlink/contracts/src/v0.8/interfaces/AggregatorV3Interface.sol";
 
 contract App is ReentrancyGuard {
 
     using Counters for Counters.Counter;
     Counters.Counter private _itemIds;
+    AggregatorV3Interface internal priceFeed;
     struct Item {
         uint itemId;
         address nftContract;
@@ -20,6 +22,15 @@ contract App is ReentrancyGuard {
         address[] Viewers;
     }
     mapping (uint256 => Item) private idToMarketItem;
+
+    constructor() {
+        priceFeed = AggregatorV3Interface(0x9326BFA02ADD2366b30bacB125260Af641031331);
+    }
+
+    function getLatestPrice() public view returns (int) {
+        (,int price,,,) = priceFeed.latestRoundData();
+        return price;
+    }
 
     function getNFTs() public view returns (Item[] memory) {
         uint itemCount = _itemIds.current();
@@ -40,16 +51,18 @@ contract App is ReentrancyGuard {
     function buyNFT(address _nftContract, uint _amount, uint _nftId) public payable {
         Item storage item = idToMarketItem[_nftId];
         require(_amount == item.price, "Please, pay the right amount");
+        require(item.owner != msg.sender);
         item.owner.transfer(_amount);
         IERC721(_nftContract).transferFrom(item.owner, msg.sender, _nftId);
         idToMarketItem[_nftId].owner = payable(msg.sender);
         /*payable(owner).transfer(listingPrice);*/
     }
 
-    function payAccessibility(uint _amount, uint _itemId) public payable {
+    function payAccessibility(/*uint _amount,*/ uint _itemId) public payable {
         Item storage item = idToMarketItem[_itemId];
-        require(_amount == item.watchingFee, "Pay to right amount please");
-        item.owner.transfer(_amount);
+        require(item.owner != msg.sender);
+        /*require(_amount == item.watchingFee, "Pay to right amount please");
+        item.owner.transfer(_amount);*/
         item.viewersCount +=1;
         item.Viewers.push(msg.sender);
         
