@@ -1,1 +1,1 @@
-Content creation platfrom
+Decentralized video watching platform 
