@@ -23,7 +23,7 @@ function NavBar() {
 
     return (
         <nav>
-          <section>Name</section>
+          <section>Dmovie</section>
           <section><img src={Buffer} alt="" /></section>
        </nav>
     )

@@ -3,10 +3,11 @@ import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
 import {appAddress} from '../utils'
 import App from '../artifacts/contracts/App.sol/App.json'
 import Web3modal from 'web3modal'
-import { ethers } from 'ethers';
+import { ethers } from 'ethers'
+import { useRouter } from 'next/router'
 
 function Card({src, title, description,id, srcVid, watchingFee, price}) {
-
+    const router = useRouter()
     const payForAccessibility = async() => {
         const web3modal = new Web3modal()
         const connection = await web3modal.connect()
@@ -14,9 +15,10 @@ function Card({src, title, description,id, srcVid, watchingFee, price}) {
         const signer = await provider.getSigner()
         const appContract = new ethers.Contract(appAddress, App.abi, signer)
         try {
-            await appContract.payAccessibility(id.toNumber())
-            console.log('accessibility paid')
+            await appContract.payAccessibility(ethers.utils.formatUnits(watchingFee, 'wei'),id.toNumber())
+            router.push(`/video/${title}`)
         } catch(err) {
+            
             console.log(err)
         }
        

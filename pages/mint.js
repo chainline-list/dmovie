@@ -31,33 +31,40 @@ function Mint() {
             return
         }
         const web3storage = new Web3Storage({token:apiKey})
-        const imgCID = await web3storage.put([new File([new Blob([file])], `${title}`)])
-        const videoCID = await web3storage.put([new File([new Blob([video])], `${title}`)])
-        const imgLink = `https://${imgCID}.ipfs.dweb.link/${title}`
-        const videoLink = `https://${videoCID}.ipfs.dweb.link/${title}`
-        const nftData = new Blob(
-          [JSON.stringify({
-            title,
-            description,
-            imgLink,
-            videoLink
-        })], { type:'application/json' }
-        ) 
-        const nftURL = await web3storage.put([new File([nftData],`${title}` )])
+        try {
+            const imgCID = await web3storage.put([new File([new Blob([file])], `${title}`)])
+            const videoCID = await web3storage.put([new File([new Blob([video])], `${title}`)])
+            const imgLink = `https://${imgCID}.ipfs.dweb.link/${title}`
+            const videoLink = `https://${videoCID}.ipfs.dweb.link/${title}`
+            const nftData = new Blob(
+              [JSON.stringify({
+              title,
+              description,
+              imgLink,
+              videoLink
+              })], { type:'application/json' }
+            ) 
+            const nftURL = await web3storage.put([new File([nftData],`${title}` )])
 
-        const web3modal = new Web3modal()
-        const connection = await web3modal.connect()
-        const provider = new ethers.providers.Web3Provider(connection)
-        const signer = provider.getSigner()
-        const nftContract = new ethers.Contract(nftAddress, NFT.abi, signer)
-        const appContract = new ethers.Contract(appAddress, App.abi, signer)
-        const transaction = await nftContract.createToken(`https://${nftURL}.ipfs.dweb.link/${title}`)
-        const tx = await transaction.wait()
-        const event = tx.events[0] 
-        const tokenId = event.args[2].toNumber()
-        await appContract.mintNFT(nftAddress, tokenId, 1, 1)
-        setLoading(false)
-        router.push('/')
+            const web3modal = new Web3modal()
+            const connection = await web3modal.connect()
+            const provider = new ethers.providers.Web3Provider(connection)
+            const signer = provider.getSigner()
+            const nftContract = new ethers.Contract(nftAddress, NFT.abi, signer)
+            const appContract = new ethers.Contract(appAddress, App.abi, signer)
+            const transaction = await nftContract.createToken(`https://${nftURL}.ipfs.dweb.link/${title}`)
+            const tx = await transaction.wait()
+            const event = tx.events[0] 
+            const tokenId = event.args[2].toNumber()
+            const priceWei = ethers.utils.formatUnits(sellingPrice,'wei')
+            const watchingFeeWei = ethers.utils.formatUnits(watchingPrice,'wei')
+            await appContract.mintNFT(nftAddress, tokenId, priceWei, watchingFeeWei)
+            setLoading(false)
+            router.push('/')
+        } catch(err) {
+            setLoading(false)
+            console.log('Merkim' + err)
+        }
         
     }
 

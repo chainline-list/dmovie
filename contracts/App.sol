@@ -58,11 +58,11 @@ contract App is ReentrancyGuard {
         /*payable(owner).transfer(listingPrice);*/
     }
 
-    function payAccessibility(/*uint _amount,*/ uint _itemId) public payable {
+    function payAccessibility(uint _amount, uint _itemId) public payable {
         Item storage item = idToMarketItem[_itemId];
-        require(item.owner != msg.sender);
-        /*require(_amount == item.watchingFee, "Pay to right amount please");
-        item.owner.transfer(_amount);*/
+        require(item.owner != msg.sender, 'cannot pay for your own work!');
+        require(_amount == item.watchingFee, "Pay to right amount please");
+        item.owner.transfer(_amount);
         item.viewersCount +=1;
         item.Viewers.push(msg.sender);
         

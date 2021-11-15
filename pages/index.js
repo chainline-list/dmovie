@@ -26,14 +26,16 @@ export default function Home() {
         const meta = await axios.get(tokenUri)
         const metadata = meta.data
         const nftId = i.itemId 
-        const watchingFee = i.watchingFee
-        const price = i.price
+        const watchingFee =i.watchingFee.toNumber() /* ethers.utils.formatUnits(i.watchingFee.toNumber(), 'ether') */
+        const price = i.price.toNumber()/*ethers.utils.formatUnits(, 'ether')*/
         const nft = {
           nftId,
           watchingFee,
           price,
           metadata
         }
+        console.log(watchingFee, price)
+        console.log(i.watchingFee.toNumber())
         return nft
       }))
       setItems(items)
