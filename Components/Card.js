@@ -5,9 +5,12 @@ import App from '../artifacts/contracts/App.sol/App.json'
 import Web3modal from 'web3modal'
 import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
+import {useDispatch} from 'react-redux'
 
 function Card({src, title, description,id, srcVid, watchingFee, price}) {
+
     const router = useRouter()
+    const dispatch = useDispatch()
     const payForAccessibility = async() => {
         const web3modal = new Web3modal()
         const connection = await web3modal.connect()
@@ -15,10 +18,17 @@ function Card({src, title, description,id, srcVid, watchingFee, price}) {
         const signer = await provider.getSigner()
         const appContract = new ethers.Contract(appAddress, App.abi, signer)
         try {
-            await appContract.payAccessibility(ethers.utils.formatUnits(watchingFee, 'wei'),id.toNumber())
+            await appContract.payAccessibility(ethers.utils.formatUnits(watchingFee, 'wei'),id.toNumber(), {value: ethers.utils.parseEther('0.1')})
+            dispatch({
+                type:'setVideo',
+                video: {
+                    srcVid,
+                    title
+                }
+            })
             router.push(`/video/${title}`)
         } catch(err) {
-            
+
             console.log(err)
         }
        
@@ -34,6 +44,7 @@ function Card({src, title, description,id, srcVid, watchingFee, price}) {
                 <span>{description}</span>
             </div>
             <button className='playButton' onClick= {payForAccessibility}><PlayCircleOutlineIcon/></button>
+            <button className='buyButton'>Buy with {price} MATIC</button>
         </div>
 
     )

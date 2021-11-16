@@ -24,16 +24,17 @@ function Mint() {
 
     const mintNft = async(e) => {
         e.preventDefault()
+
         setLoading(true)
-        if( !title || !description  || !watchingPrice || !sellingPrice || !video || !file ) {
+        if( !title || !description  || !watchingPrice || !sellingPrice || video.length === 0 || file.length === 0 ) {
             setError('Error : Fill all the fields')
             setLoading(false)
             return
         }
         const web3storage = new Web3Storage({token:apiKey})
         try {
-            const imgCID = await web3storage.put([new File([new Blob([file])], `${title}`)])
-            const videoCID = await web3storage.put([new File([new Blob([video])], `${title}`)])
+            const imgCID = await web3storage.put([new File([new Blob([file[0]])], `${title}`)])
+            const videoCID = await web3storage.put([new File([new Blob([video[0]])], `${title}`)])
             const imgLink = `https://${imgCID}.ipfs.dweb.link/${title}`
             const videoLink = `https://${videoCID}.ipfs.dweb.link/${title}`
             const nftData = new Blob(
@@ -63,7 +64,6 @@ function Mint() {
             router.push('/')
         } catch(err) {
             setLoading(false)
-            console.log('Merkim' + err)
         }
         
     }
@@ -72,7 +72,7 @@ function Mint() {
         e.preventDefault()
         const url = URL.createObjectURL(e.target.files[0])
         setThumbnailLink(url)
-        setFile(e.target.files[0])
+        setFile(e.target.files)
 
     }
 
@@ -87,8 +87,8 @@ function Mint() {
                 <textarea type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
                 <input type="number" placeholder='Enter your watching price (Optional)' onChange={(e) => setWatchingPrice(e.target.value)} />
                 <input type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
-                <input type="file" className="custom-video-input" onChange={(e) => setVideo(e.target.files[0])}/>
-                <input type="file" className='custom-file-input'onChange={uploadThumbnail} />
+                <input type="file" accept='video/*' className="custom-video-input" onChange={(e) => setVideo(e.target.files)}/>
+                <input type="file" accept='image/*' className='custom-file-input'onChange={uploadThumbnail} />
                 <section>
                     {thumbnailLink && <img src={thumbnailLink} alt="" />}
                     {!loading && <button type="submit">upload</button>}

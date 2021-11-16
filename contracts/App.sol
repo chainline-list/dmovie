@@ -62,7 +62,7 @@ contract App is ReentrancyGuard {
         Item storage item = idToMarketItem[_itemId];
         require(item.owner != msg.sender, 'cannot pay for your own work!');
         require(_amount == item.watchingFee, "Pay to right amount please");
-        item.owner.transfer(_amount);
+        item.owner.transfer(msg.value);
         item.viewersCount +=1;
         item.Viewers.push(msg.sender);
         

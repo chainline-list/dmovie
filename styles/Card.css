@@ -58,3 +58,23 @@
     width: 20%;
     border-radius: 50%;
 }
+
+.buyButton {
+    position: absolute;
+    top: 110%;
+    color: black;
+  }
+
+.videoScreen {
+    height:calc(100vh - 3rem);
+    width: 100%;
+    background: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.videoScreen>video {
+    width: 90vw;
+    height: 60vh;
+}
