@@ -28,14 +28,14 @@ export default function Home() {
         const nftId = i.itemId 
         const watchingFee =i.watchingFee.toNumber() /* ethers.utils.formatUnits(i.watchingFee.toNumber(), 'ether') */
         const price = i.price.toNumber()/*ethers.utils.formatUnits(, 'ether')*/
+        const viewers = i.Viewers 
         const nft = {
           nftId,
           watchingFee,
           price,
-          metadata
+          metadata,
+          viewers
         }
-        console.log(watchingFee, price)
-        console.log(i.watchingFee.toNumber())
         return nft
       }))
       setItems(items)
@@ -61,7 +61,7 @@ export default function Home() {
 
       <main className='app__content'>
 
-        {items.map(({nftId, watchingFee, price, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price}/>)}
+        {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
         
       </main>
 

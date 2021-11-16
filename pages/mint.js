@@ -57,8 +57,8 @@ function Mint() {
             const tx = await transaction.wait()
             const event = tx.events[0] 
             const tokenId = event.args[2].toNumber()
-            const priceWei = ethers.utils.formatUnits(sellingPrice,'wei')
-            const watchingFeeWei = ethers.utils.formatUnits(watchingPrice,'wei')
+            const priceWei = ethers.utils.parseEther(`${sellingPrice}`)
+            const watchingFeeWei = ethers.utils.parseEther(`${watchingPrice}`)
             await appContract.mintNFT(nftAddress, tokenId, priceWei, watchingFeeWei)
             setLoading(false)
             router.push('/')
@@ -103,4 +103,3 @@ function Mint() {
 }
 
 export default Mint
-/**/

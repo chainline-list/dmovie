@@ -48,11 +48,11 @@ contract App is ReentrancyGuard {
         idToMarketItem[itemID].Viewers.push(msg.sender);
     }
 
-    function buyNFT(address _nftContract, uint _amount, uint _nftId) public payable {
+    function buyNFT(address _nftContract, uint _nftId) public payable {
         Item storage item = idToMarketItem[_nftId];
-        require(_amount == item.price, "Please, pay the right amount");
+        require(msg.value == item.price, "Please, pay the right amount");
         require(item.owner != msg.sender);
-        item.owner.transfer(_amount);
+        item.owner.transfer(msg.value);
         IERC721(_nftContract).transferFrom(item.owner, msg.sender, _nftId);
         idToMarketItem[_nftId].owner = payable(msg.sender);
         /*payable(owner).transfer(listingPrice);*/

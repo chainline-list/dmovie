@@ -7,28 +7,47 @@ import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import {useDispatch} from 'react-redux'
 
-function Card({src, title, description,id, srcVid, watchingFee, price}) {
+function Card({src, title, description,id, srcVid, watchingFee,viewers, price}) {
 
     const router = useRouter()
     const dispatch = useDispatch()
     const payForAccessibility = async() => {
+        const ethereum = window.ethereum
+        const accounts = await ethereum?.request({ method: 'eth_requestAccounts' })
         const web3modal = new Web3modal()
         const connection = await web3modal.connect()
         const provider = new ethers.providers.Web3Provider(connection)
         const signer = await provider.getSigner()
-        const appContract = new ethers.Contract(appAddress, App.abi, signer)
-        try {
+        const appContract = new ethers.Contract(appAddress, App.abi, signer) 
+        const viewersUppercase = viewers.map(viewer => viewer.toUpperCase())
+        
+        if (viewersUppercase.includes(accounts[0].toUpperCase())) {
+            dispatch({
+                type:'setVideo',
+                video: {
+                    id,
+                    srcVid,
+                    title,
+                    price
+                }
+            })
+            router.push(`/video/${title}`)
+            return
+        }
+       try {
             await appContract.payAccessibility(ethers.utils.formatUnits(watchingFee, 'wei'),id.toNumber(), {value: ethers.utils.parseEther('0.1')})
             dispatch({
                 type:'setVideo',
                 video: {
+                    id,
                     srcVid,
-                    title
+                    title,
+                    price
                 }
             })
             router.push(`/video/${title}`)
         } catch(err) {
-
+        
             console.log(err)
         }
        
@@ -36,7 +55,7 @@ function Card({src, title, description,id, srcVid, watchingFee, price}) {
 
     return (
         <div className='card'>
-            <div className='thumbnail'>
+           <div className='thumbnail'>
                 <img src={src} alt={title} />
             </div>
             <div className='description'>
@@ -44,7 +63,6 @@ function Card({src, title, description,id, srcVid, watchingFee, price}) {
                 <span>{description}</span>
             </div>
             <button className='playButton' onClick= {payForAccessibility}><PlayCircleOutlineIcon/></button>
-            <button className='buyButton'>Buy with {price} MATIC</button>
         </div>
 
     )

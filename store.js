@@ -1,7 +1,6 @@
 import {createStore} from 'redux'
 
 
-
 const counterReducer = (state={video:{}}, action) => {
     if (action.type === 'setVideo') {
         return {

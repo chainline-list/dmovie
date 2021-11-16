@@ -1,4 +1,4 @@
-.card {
+.card {flex: none;
     height: 15rem;
     width: 15rem;
     border-radius: 19px;
@@ -11,7 +11,7 @@
 
 .card:hover {
     transition: 400ms ease-in-out;
-    transform: scale(1.04);
+    transform: scale(1.03);
 }
 
 .card>.thumbnail {
@@ -59,17 +59,12 @@
     border-radius: 50%;
 }
 
-.buyButton {
-    position: absolute;
-    top: 110%;
-    color: black;
-  }
-
 .videoScreen {
     height:calc(100vh - 3rem);
     width: 100%;
     background: black;
     display: flex;
+    flex-direction: column;
     align-items: center;
     justify-content: center;
 }
@@ -77,4 +72,50 @@
 .videoScreen>video {
     width: 90vw;
     height: 60vh;
+    margin-bottom: 5rem;
+}
+
+.videoScreen>button {
+    width: 35%;
+    padding: 20px;
+    border-radius: 7px;
+    font-size: 16px;
+    font-weight: 700;
+    transition: 300ms ease-in-out;
+}
+
+.videoScreen>button:hover {
+    transform: scale(1.03);
+    transition: 300ms ease-in-out;
+}
+
+@media screen and (max-width:890px) {
+    .videoScreen>button {
+        font-size: 13px;
+    }
+}
+
+@media screen and (max-width:760px) {
+    .videoScreen>button {
+        font-size: 10px;
+        padding: 15px;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .videoScreen>button {
+        width: 45%;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .videoScreen>button {
+        width: 65%;
+    }
+}
+
+@media screen and (max-width:580px) {
+    .videoScreen>button {
+        width: 85%;
+    }
 }
