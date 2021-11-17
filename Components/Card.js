@@ -35,7 +35,7 @@ function Card({src, title, description,id, srcVid, watchingFee,viewers, price}) 
             return
         }
        try {
-            await appContract.payAccessibility(ethers.utils.formatUnits(watchingFee, 'wei'),id.toNumber(), {value: ethers.utils.parseEther('0.1')})
+            await appContract.payAccessibility(id.toNumber(), {value: ethers.utils.parseEther(watchingFee)})
             dispatch({
                 type:'setVideo',
                 video: {

@@ -14,17 +14,15 @@ function VideoScreen() {
     localStorage.setItem('video', videoData)*/
 
     const buyVideo = async() => {
-        console.log(typeof(videoData.price))
         const web3modal = new Web3modal()
         const connection = await web3modal.connect()
         const provider = new ethers.providers.Web3Provider(connection)
         const signer = await provider.getSigner()
         const appContract = new ethers.Contract(appAddress, App.abi, signer)
-
-        console.log(videoData.id)
+        console.log(ethers.utils.parseEther(videoData.price))
         try {
-            /*await appContract.buyNFT(nftAddress, videoData.id, {value: ethers.utils.parseEther(`${videoData.price}`)})
-            router.push('/')*/
+            await appContract.buyNFT(nftAddress,videoData.id.toNumber(), {value: ethers.utils.parseEther(videoData.price)})
+            router.push('/')
             console.log(ethers.utils.parseEther(`${videoData.price}`))
         } catch(err) {
             console.log(err)

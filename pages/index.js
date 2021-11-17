@@ -26,8 +26,8 @@ export default function Home() {
         const meta = await axios.get(tokenUri)
         const metadata = meta.data
         const nftId = i.itemId 
-        const watchingFee =i.watchingFee.toNumber() /* ethers.utils.formatUnits(i.watchingFee.toNumber(), 'ether') */
-        const price = i.price.toNumber()/*ethers.utils.formatUnits(, 'ether')*/
+        const watchingFee =ethers.utils.formatUnits(i.watchingFee, 'ether') 
+        const price = ethers.utils.formatUnits(i.price, 'ether')
         const viewers = i.Viewers 
         const nft = {
           nftId,

@@ -51,17 +51,18 @@ contract App is ReentrancyGuard {
     function buyNFT(address _nftContract, uint _nftId) public payable {
         Item storage item = idToMarketItem[_nftId];
         require(msg.value == item.price, "Please, pay the right amount");
-        require(item.owner != msg.sender);
+        require(item.owner != msg.sender, "You cannot buy your own work");
         item.owner.transfer(msg.value);
-        IERC721(_nftContract).transferFrom(item.owner, msg.sender, _nftId);
+        IERC721(_nftContract).safeTransferFrom(address(this), msg.sender, _nftId);
         idToMarketItem[_nftId].owner = payable(msg.sender);
+
         /*payable(owner).transfer(listingPrice);*/
     }
 
-    function payAccessibility(uint _amount, uint _itemId) public payable {
+    function payAccessibility(uint _itemId) public payable {
         Item storage item = idToMarketItem[_itemId];
         require(item.owner != msg.sender, 'cannot pay for your own work!');
-        require(_amount == item.watchingFee, "Pay to right amount please");
+        require(msg.value == item.watchingFee, "Pay to right amount please");
         item.owner.transfer(msg.value);
         item.viewersCount +=1;
         item.Viewers.push(msg.sender);
