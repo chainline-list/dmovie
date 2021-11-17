@@ -53,7 +53,7 @@ contract App is ReentrancyGuard {
         require(msg.value == item.price, "Please, pay the right amount");
         require(item.owner != msg.sender, "You cannot buy your own work");
         item.owner.transfer(msg.value);
-        IERC721(_nftContract).safeTransferFrom(address(this), msg.sender, _nftId);
+        IERC721(_nftContract).safeTransferFrom(item.owner, msg.sender, _nftId);
         idToMarketItem[_nftId].owner = payable(msg.sender);
 
         /*payable(owner).transfer(listingPrice);*/
