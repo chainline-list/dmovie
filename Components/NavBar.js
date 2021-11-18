@@ -23,7 +23,7 @@ function NavBar() {
 
     return (
         <nav>
-          <section>Dmovie</section>
+          <section className='logo'><img src='phonto.PNG'/> <h1>Dmovie</h1></section>
           <section><img src={Buffer} alt="" /></section>
        </nav>
     )

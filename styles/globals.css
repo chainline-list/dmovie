@@ -29,3 +29,14 @@ nav {
 nav img {
   border-radius: 9px;
 }
+
+.logo {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.logo>img {
+  height: 3rem;
+  width: 4rem;
+}
