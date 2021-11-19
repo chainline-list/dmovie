@@ -30,13 +30,70 @@ nav img {
   border-radius: 9px;
 }
 
+.nav__rightSide {
+  width: 20%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.nav__rightSide>span {
+  height: 100%;
+  width: 6rem;
+  background-color: white;
+  color: rgb(67, 4, 73);
+  border: none;
+  outline: none;
+  text-transform: uppercase;
+  font-weight: 800;
+  border-radius: 7px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+}
+
 .logo {
   display: flex;
   align-items: center;
   justify-content: center;
+  
 }
 
-.logo>img {
+.logo img {
   height: 3rem;
   width: 4rem;
+  cursor: pointer;
+}
+
+@media screen and (max-width:840px) {
+  .nav__rightSide {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:485px) {
+  .logo>h1 {
+    display: none;
+  }
+  .nav__rightSide {
+    width: 40%;
+  }
+}
+
+@media screen and (max-width:320px) {
+
+
+  .nav__rightSide>span {
+    width: 6rem;
+  }
+
+  .nav__rightSide img {
+    display: none;
+  }
+
+  .nav__rightSide {
+    width: 70%;
+    justify-content: flex-end;
+  }
 }

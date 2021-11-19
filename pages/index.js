@@ -4,7 +4,6 @@ import NFT from '../artifacts/contracts/NFT.sol/NFT.json'
 import App from '../artifacts/contracts/App.sol/App.json'
 import { useEffect, useState } from 'react'
 import {nftAddress, appAddress} from '../utils'
-import Link from 'next/link'
 import Card from '../Components/Card'
 import axios from 'axios'
 
@@ -64,8 +63,6 @@ export default function Home() {
         {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
         
       </main>
-
-      <section className='app__addButton'><Link href='/mint'>kk</Link></section>
 
 
 

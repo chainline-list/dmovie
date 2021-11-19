@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import identicon from 'identicon'
+import Link from 'next/link'
 
 
 function NavBar() {
@@ -23,8 +24,11 @@ function NavBar() {
 
     return (
         <nav>
-          <section className='logo'><img src='phonto.PNG'/> <h1>Dmovie</h1></section>
-          <section><img src={Buffer} alt="" /></section>
+          <section className='logo'><Link href='/'><img src='phonto.PNG'/></Link> <h1>Dmovie</h1></section>
+          <section className='nav__rightSide'>
+            <span><Link href='/mint'>Upload</Link></span>
+            <img src={Buffer} alt="" />
+          </section>
        </nav>
     )
 }

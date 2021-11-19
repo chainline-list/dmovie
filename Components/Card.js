@@ -1,5 +1,4 @@
-
-import PlayCircleOutlineIcon from '@material-ui/icons/PlayCircleOutline';
+import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
 import {appAddress} from '../utils'
 import App from '../artifacts/contracts/App.sol/App.json'
 import Web3modal from 'web3modal'
