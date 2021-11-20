@@ -24,6 +24,9 @@ nav {
   padding-right: 15px;
   height: 3rem;
   background-color: rgb(67, 4, 73);
+  position: fixed;
+  width: 100%;
+  z-index: 2;
 }
 
 nav img {

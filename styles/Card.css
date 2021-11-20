@@ -11,6 +11,11 @@
     border: 1px solid black;
 }
 
+.large {
+    height: 18rem;
+    width:20rem;
+}
+
 .card:hover {
     transition: 400ms ease-in-out;
     transform: scale(1.03);
@@ -50,6 +55,8 @@
 
 .card>.description>span {
     font-size: 12px;
+    width: 99%;
+    object-fit: contain;
 }
 
 .playButton {

@@ -1,13 +1,23 @@
-.app {
+.app, .loadingApp {
   height: calc(100vh - 3rem);
   width: 100%;
 }
 
+.loading {
+  display: flex;
+  justify-content: space-evenly;
+  margin:1rem;
+}
+
 .app__content {
-  padding-top: 1rem;
+  padding-top: 4rem;
   /*width: 100%;*/
   height: 100%;
   /*background-color: black;*/
+  
+}
+
+.items {
   display: flex;
   overflow: auto;
 }

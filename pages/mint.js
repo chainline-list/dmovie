@@ -89,10 +89,11 @@ function Mint() {
                 <input type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
                 <input type="file" accept='video/*' className="custom-video-input" onChange={(e) => setVideo(e.target.files)}/>
                 <input type="file" accept='image/*' className='custom-file-input'onChange={uploadThumbnail} />
-                <section>
+                {!loading && <section>
                     {thumbnailLink && <img src={thumbnailLink} alt="" />}
-                    {!loading && <button type="submit">upload</button>}
-                </section>
+                    <button type="submit">upload</button>
+                </section>}
+                {loading && <p>Uploading!! This may take several seconds </p>}
                 
             </form>
              <img src="" alt="" />

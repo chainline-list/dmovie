@@ -1,4 +1,4 @@
-import PlayCircleOutlineIcon from '@mui/icons-material/PlayCircleOutline';
+
 import {appAddress} from '../utils'
 import App from '../artifacts/contracts/App.sol/App.json'
 import Web3modal from 'web3modal'
@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import {useDispatch} from 'react-redux'
 
-function Card({src, title, description,id, srcVid, watchingFee,viewers, price}) {
+function Card({src, title, large, description,id, srcVid, watchingFee,viewers, price}) {
 
     const router = useRouter()
     const dispatch = useDispatch()
@@ -53,7 +53,7 @@ function Card({src, title, description,id, srcVid, watchingFee,viewers, price}) 
     }
 
     return (
-        <div className='card'>
+        <div className={`card ${large && 'large'}`}>
            <div className='thumbnail'>
                 <img src={src} alt={title} />
             </div>
@@ -61,7 +61,7 @@ function Card({src, title, description,id, srcVid, watchingFee,viewers, price}) 
                 <h1>{title}</h1>
                 <span>{description}</span>
             </div>
-            <button className='playButton' onClick= {payForAccessibility}><PlayCircleOutlineIcon/></button>
+            <button className='playButton' onClick= {payForAccessibility}></button>
         </div>
 
     )

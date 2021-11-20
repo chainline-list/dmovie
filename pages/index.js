@@ -6,12 +6,16 @@ import { useEffect, useState } from 'react'
 import {nftAddress, appAddress} from '../utils'
 import Card from '../Components/Card'
 import axios from 'axios'
+import Loading from '../Components/Loading'
+import Caroussel from '../Components/Caroussel'
 
 export default function Home() {
   
   const [items, setItems] = useState([])
+  const [loading, setLoading] = useState(true)
 
   const getBlockChainData = async () => {
+
     const provider = new ethers.providers.JsonRpcProvider()
     const tokenContract = new ethers.Contract(nftAddress,NFT.abi, provider)
     const appContract = new ethers.Contract(appAddress,App.abi, provider)
@@ -38,6 +42,7 @@ export default function Home() {
         return nft
       }))
       setItems(items)
+      setLoading(false)
     } catch(err) {
       console.log(err)
     }
@@ -48,6 +53,8 @@ export default function Home() {
     getBlockChainData()
   }, [])
 
+
+  const carouselArray = [items[0], items[1], items[2], items[3]]
   
 
   return (
@@ -58,11 +65,35 @@ export default function Home() {
         <link rel="icon" href="/favicon.ico" />
       </Head>
 
-      <main className='app__content'>
+      {!loading && <main className='app__content'>
 
-        {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+        <Caroussel elements ={carouselArray}/>
+
+        <div className="items">
+          {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+        </div>
+        <div className="items">
+          {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+        </div>
+        <div className="items">
+          {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+        </div>
+        <div className="items">
+          {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+        </div>
+
         
-      </main>
+        
+      </main>}
+
+      {
+        loading && <div className="loadingApp">
+          <Loading/>
+          <Loading/>
+          <Loading/>
+          <Loading/>
+        </div>
+      }
 
 
 
