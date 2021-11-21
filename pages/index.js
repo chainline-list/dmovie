@@ -24,7 +24,6 @@ export default function Home() {
     try {
       const data = await appContract.getNFTs()
       const items = await Promise.all(data.map(async i => {
-        console.log(i)
         const tokenUri = await tokenContract.tokenURI(i.tokenId)
         const meta = await axios.get(tokenUri)
         const metadata = meta.data
