@@ -7,7 +7,7 @@ function NavBar() {
 
     const [Buffer, setBuffer] = useState()
 
-    const requestAccount = async () => {
+    /*const requestAccount = async () => {
         const ethereum = window.ethereum 
         if (ethereum !== 'undefined') {
           const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
@@ -20,7 +20,7 @@ function NavBar() {
 
     useEffect(() => {
         requestAccount()
-    }, [])
+    }, [])*/
 
     return (
         <nav>
