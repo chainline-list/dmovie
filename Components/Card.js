@@ -1,4 +1,4 @@
-import { FaPlay } from 'react-icons/fa'
+
 import {appAddress} from '../utils'
 import App from '../artifacts/contracts/App.sol/App.json'
 import Web3modal from 'web3modal'

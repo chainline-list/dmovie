@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import identicon from 'identicon'
+//import identicon from 'identicon'
 import Link from 'next/link'
 
 
@@ -27,10 +27,11 @@ function NavBar() {
           <section className='logo'><Link href='/'><img src='phonto.PNG'/></Link> <h1>Dmovie</h1></section>
           <section className='nav__rightSide'>
             <span><Link href='/mint'>Upload</Link></span>
-            <img src={Buffer} alt="" />
+            
           </section>
        </nav>
     )
 }
 
 export default NavBar
+//<img src={Buffer} alt="" />
