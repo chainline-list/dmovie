@@ -1,4 +1,4 @@
-
+import { FaPlay } from 'react-icons/fa'
 import {appAddress} from '../utils'
 import App from '../artifacts/contracts/App.sol/App.json'
 import Web3modal from 'web3modal'
@@ -61,7 +61,7 @@ function Card({src, title, large, description,id, srcVid, watchingFee,viewers, p
                 <h1>{title}</h1>
                 <span>{description}</span>
             </div>
-            <button className='playButton' onClick= {payForAccessibility}></button>
+            <button className='playButton' onClick= {payForAccessibility}><img src='play.png' alt='play button'/></button>
         </div>
 
     )

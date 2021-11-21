@@ -20,6 +20,13 @@
 .items {
   display: flex;
   overflow: auto;
+  border-bottom: 1px solid rebeccapurple;
+  scrollbar-width: none;
+  -ms-overflow-style: none
+}
+
+.items::-webkit-scrollbar {
+  display: none;
 }
 
 .app__addButton {
