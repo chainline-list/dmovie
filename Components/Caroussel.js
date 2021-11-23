@@ -5,18 +5,26 @@ import "react-multi-carousel/lib/styles.css";
 function Caroussel({elements}) {
     const responsive = {
         desktop: {
-          breakpoint: { max: 3000, min: 1024 },
-          items: 3,
+          breakpoint: { max: 3000, min: 1281 },
+          items: 4,
+          partialVisibilityGutter: 40,
           slidesToSlide: 3 // optional, default to 1.
         },
+        laptop: {
+          breakpoint: {max:1280, min:860},
+          items: 3,
+          partialVisibilityGutter: 40,
+          slidesToSlide:2
+        },
         tablet: {
-          breakpoint: { max: 1024, min: 464 },
+          breakpoint: { max: 850, min: 580 },
           items: 2,
           slidesToSlide: 2 // optional, default to 1.
         },
         mobile: {
-          breakpoint: { max: 590, min: 0 },
+          breakpoint: { max: 570, min: 0 },
           items: 1,
+          partialVisibilityGutter: 40,
           slidesToSlide: 1 // optional, default to 1.
         }
     };

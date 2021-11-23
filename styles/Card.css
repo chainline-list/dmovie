@@ -108,21 +108,34 @@
 
 @media screen and (max-width:1280px) {
     .card {
+        width: 14rem;
+    }
+
+    .large {
+        width: 19rem;
+    }
+}
+
+@media screen and (max-width:1024px){
+    .card {
         width: 13rem;
+    }
+    .large {
+        width: 19rem;
     }
 }
 
 @media screen and (max-width:960px) {
     .card {
         height: 11rem;
-        width: 11rem;
+        width: 12rem;
+    }
+    .large {
+        width: 16rem;
+        height: 15rem;
     }
     .videoScreen>button {
         font-size: 13px;
-    }
-
-    .large {
-        width: 22rem;
     }
 
     .large>.playButton {
@@ -141,9 +154,9 @@
 }
 
 
-@media screen and (max-width:830px) {
+@media screen and (max-width:880px) {
     .card {
-        width: 12rem;
+        width: 11.5rem;
         height: 11rem;
     }
     .videoScreen>button {
@@ -152,14 +165,41 @@
     }
 
     .large {
-        width: 20rem;
+        width: 15rem;
         height: 16rem;
     }
 }
 
+@media  screen and (max-width:850px) {
+    .card {
+        width: 11rem;
+    }
+
+    .large {
+        width: 21rem;
+        height: 17rem;
+    }
+}
+
+@media  screen and (max-width:730px) {
+    .card {
+        width: 11rem;
+    }
+
+    .large {
+        width: 19rem;
+        height: 17rem;
+    }
+  }
+
 @media  screen and (max-width:660px) {
     .card {
         width: 10rem;
+    }
+
+    .large {
+        width: 18rem;
+        height: 16rem;
     }
   }
 
@@ -187,6 +227,10 @@
     .card {
         width: 17rem;
         height: 14rem;
+    }
+
+    .large {
+        width: 95%;
     }
 }
 

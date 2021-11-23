@@ -53,7 +53,7 @@ export default function Home() {
   }, [])
 
 
-  const carouselArray = [items[0]]
+  const carouselArray = [items[0], items[1], items[2], items[3], items[4]]
   
 
   return (
