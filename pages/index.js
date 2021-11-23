@@ -53,7 +53,7 @@ export default function Home() {
   }, [])
 
 
-  const carouselArray = [items[0], items[1], items[2], items[3]]
+  const carouselArray = [items[0]]
   
 
   return (
@@ -69,7 +69,7 @@ export default function Home() {
         <Caroussel elements ={carouselArray}/>
 
         <div className="items">
-          {items.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+          {items?.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
         </div>
 
         
