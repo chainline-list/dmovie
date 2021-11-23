@@ -146,6 +146,35 @@
     align-items: center;
 }
 
+.uploading {
+    width: 90%;
+    height: 4rem;
+    color: rgb(190, 190, 190);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: 14px;
+    font-weight: bold;
+}
+
+.uploading>.spinner {
+    font-size: 50px;
+    animation: round 2s infinite;
+}
+
+@keyframes round {
+    0% {
+        transform: rotate(0deg);
+    }
+    50% {
+        transform: rotate(180deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
 @media screen and (max-width:1130px) {
     .mint__form img {
         width: 10rem;

@@ -6,6 +6,7 @@ import App from '../artifacts/contracts/App.sol/App.json'
 import router from 'next/router'
 import {Web3Storage} from 'web3.storage'
 import { useState } from 'react'
+import {FaSpinner} from 'react-icons/fa'
 
 
 function Mint() {
@@ -93,7 +94,10 @@ function Mint() {
                     {thumbnailLink && <img src={thumbnailLink} alt="" />}
                     <button type="submit">upload</button>
                 </section>}
-                {loading && <p>Uploading!! This may take several seconds </p>}
+                {loading && <section className='uploading'>
+                    <p>Uploading... This may take several seconds </p>
+                    <span className='spinner'><FaSpinner /></span> 
+                </section>}
                 
             </form>
              <img src="" alt="" />
