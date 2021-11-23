@@ -16,7 +16,7 @@ export default function Home() {
 
   const getBlockChainData = async () => {
 
-    const provider = new ethers.providers.JsonRpcProvider()
+    const provider = new ethers.providers.JsonRpcProvider('https://rpc-mumbai.matic.today')
     const tokenContract = new ethers.Contract(nftAddress,NFT.abi, provider)
     const appContract = new ethers.Contract(appAddress,App.abi, provider)
   
