@@ -1,6 +1,6 @@
 .mint {
     display: flex;
-    height: calc(100vh - 3rem);
+    height: 110vh;
     width: 100vw;
     background-color:white;
     object-fit: fill;
@@ -140,7 +140,6 @@
 
 .mint__form>section {
     display: flex;
-    /*background-color: white;*/
     width: 70%;
     justify-content: space-between;
     align-items: center;

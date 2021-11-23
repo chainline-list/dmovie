@@ -23,7 +23,7 @@ nav {
   padding-left: 15px;
   padding-right: 15px;
   height: 3rem;
-  background-color: rgb(67, 4, 73);
+  background-color: rgba(109,40,217,255);
   position: fixed;
   width: 100%;
   z-index: 2;
@@ -80,7 +80,7 @@ nav img {
     display: none;
   }
   .nav__rightSide {
-    width: 40%;
+    width: 50%;
   }
 }
 

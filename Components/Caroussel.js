@@ -8,7 +8,7 @@ function Caroussel({elements}) {
           breakpoint: { max: 3000, min: 1281 },
           items: 4,
           partialVisibilityGutter: 40,
-          slidesToSlide: 3 // optional, default to 1.
+          slidesToSlide: 3 
         },
         laptop: {
           breakpoint: {max:1280, min:860},
@@ -19,13 +19,13 @@ function Caroussel({elements}) {
         tablet: {
           breakpoint: { max: 850, min: 580 },
           items: 2,
-          slidesToSlide: 2 // optional, default to 1.
+          slidesToSlide: 2
         },
         mobile: {
           breakpoint: { max: 570, min: 0 },
           items: 1,
           partialVisibilityGutter: 40,
-          slidesToSlide: 1 // optional, default to 1.
+          slidesToSlide: 1 
         }
     };
 

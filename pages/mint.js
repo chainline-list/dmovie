@@ -27,8 +27,8 @@ function Mint() {
         e.preventDefault()
 
         setLoading(true)
-        if( !title || !description  || !watchingPrice || !sellingPrice || video.length === 0 || file.length === 0 ) {
-            setError('Error : Fill all the fields')
+        if( !title || !description  || !watchingPrice || video.length === 0 || file.length === 0 ) {
+            setError('Error : Fill all the required fields')
             setLoading(false)
             return
         }
@@ -58,7 +58,7 @@ function Mint() {
             const tx = await transaction.wait()
             const event = tx.events[0] 
             const tokenId = event.args[2].toNumber()
-            const priceWei = ethers.utils.parseEther(`${sellingPrice}`)
+            const priceWei = ethers.utils.parseEther(`${sellingPrice || 0}`)
             const watchingFeeWei = ethers.utils.parseEther(`${watchingPrice}`)
             await appContract.mintNFT(nftAddress, tokenId, priceWei, watchingFeeWei)
             setLoading(false)
@@ -86,8 +86,8 @@ function Mint() {
             <form className='mint__form' onSubmit= {mintNft} onFocus={() => setError('')}>
                 <input type="text" placeholder='Enter title ...' onChange={(e) => setTitle(e.target.value)}/>
                 <textarea type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
-                <input type="number" placeholder='Enter your watching price (Optional)' onChange={(e) => setWatchingPrice(e.target.value)} />
-                <input type="number" placeholder='Enter selling price' onChange={(e) => setSellingPrice(e.target.value)}/>
+                <input type="number" placeholder='Enter your watching price' onChange={(e) => setWatchingPrice(e.target.value)} />
+                <input type="number" placeholder='Enter selling price (Optional)' onChange={(e) => setSellingPrice(e.target.value)}/>
                 <input type="file" accept='video/*' className="custom-video-input" onChange={(e) => setVideo(e.target.files)}/>
                 <input type="file" accept='image/*' className='custom-file-input'onChange={uploadThumbnail} />
                 {!loading && <section>

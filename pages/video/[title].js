@@ -10,8 +10,7 @@ function VideoScreen() {
     const router = useRouter()
 
     const videoData = useSelector(state => state.video)
-    /*const localStorage = window.localStorage()
-    localStorage.setItem('video', videoData)*/
+
 
     const buyVideo = async() => {
         const web3modal = new Web3modal()
@@ -33,7 +32,7 @@ function VideoScreen() {
         <div className='videoScreen'>
 
             <video src={videoData.srcVid} autoPlay controls={true}></video>
-            <button onClick={buyVideo}>You can buy this video at {videoData.price} matic</button>
+            {videoData.price != 0 && <button onClick={buyVideo}>You can buy this video at {videoData.price} matic</button>}
 
         </div>
     )
