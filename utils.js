@@ -1,2 +1,2 @@
-export const nftAddress = '0xE9752CcF6092B99494d577A7c0B5E9306f00a0B6'
-export const appAddress = '0x5483ceE5Da41943cE14971ff45C61444684DEf30'
+export const nftAddress = '0x441f3B7c59AE75865845dEfe4277800a50BDDFe7'
+export const appAddress = '0xD72820da6F54952f34CC79A5538377897f81B452'

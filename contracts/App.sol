@@ -45,7 +45,7 @@ contract App is ReentrancyGuard {
     function mintNFT(address _nftContract, uint _tokenId, uint _price, uint _watchingFee) public {
         _itemIds.increment();
         uint itemID = _itemIds.current();
-        int priceUsd = getLatestPrice();
+        int priceUsd = getLatestPrice() * 10**10;
         idToMarketItem[itemID] = Item(itemID, _nftContract, _tokenId, payable(msg.sender), _price, priceUsd, _watchingFee, 0, new address[](0));
         idToMarketItem[itemID].Viewers.push(msg.sender);
     }
