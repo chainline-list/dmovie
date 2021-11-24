@@ -33,7 +33,7 @@ function VideoScreen() {
             <video src={videoData.srcVid} autoPlay controls={true}></video>
             {videoData.price != 0 && <section onClick={buyVideo}>
                 <span>You can buy this video at {videoData.price} matic</span>
-                <button>BUY NOW {videoData.price}$</button>
+                <button>BUY NOW {videoData.price} $</button>
             </section>}
 
         </div>

@@ -105,7 +105,7 @@
     color: white;
     display: flex;
     align-items: center;
-    justify-content: center;
+    justify-content: space-evenly;
     flex-direction: column;
 }
 
@@ -151,8 +151,8 @@
         width: 16rem;
         height: 15rem;
     }
-    .videoScreen>button {
-        font-size: 13px;
+    .videoScreen>section {
+        width: 50%;
     }
 
     .large>.playButton {
@@ -175,10 +175,6 @@
     .card {
         width: 11.5rem;
         height: 11rem;
-    }
-    .videoScreen>button {
-        font-size: 10px;
-        padding: 15px;
     }
 
     .large {
@@ -207,6 +203,10 @@
         width: 19rem;
         height: 17rem;
     }
+
+    .videoScreen>section {
+        width: 60%;
+    }
   }
 
 @media  screen and (max-width:660px) {
@@ -226,8 +226,8 @@
         height: 12rem;
         margin: 0.5rem;
     }
-    .videoScreen>button {
-        width: 45%;
+    .videoScreen>section {
+        width: 75%;
     }
     .large {
         width: 95%;
@@ -237,9 +237,6 @@
 
 
 @media screen and (max-width:500px) {
-    .videoScreen>button {
-        width: 65%;
-    }
 
     .card {
         width: 17rem;
@@ -257,8 +254,8 @@
         height: 14rem;
         margin: 0.5rem;
     }
-    .videoScreen>button {
-        width: 85%;
+    .videoScreen>section {
+        width: 95%;
     }
 
     .large {

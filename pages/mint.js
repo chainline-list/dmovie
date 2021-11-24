@@ -86,8 +86,8 @@ function Mint() {
             <form className='mint__form' onSubmit= {mintNft} onFocus={() => setError('')}>
                 <input type="text" placeholder='Enter title ...' onChange={(e) => setTitle(e.target.value)}/>
                 <textarea type="textarea" rows={4} placeholder='Enter description' onChange={(e) => setDescription(e.target.value)}/>
-                <input type="number" placeholder='Enter your watching price' onChange={(e) => setWatchingPrice(e.target.value)} />
-                <input type="number" placeholder='Enter selling price (Optional)' onChange={(e) => setSellingPrice(e.target.value)}/>
+                <input type="number" step='0.01' placeholder='Enter your watching price' onChange={(e) => setWatchingPrice(e.target.value)} />
+                <input type="number" step='0.01' placeholder='Enter selling price (Optional)' onChange={(e) => setSellingPrice(e.target.value)}/>
                 <input type="file" accept='video/*' className="custom-video-input" onChange={(e) => setVideo(e.target.files)}/>
                 <input type="file" accept='image/*' className='custom-file-input'onChange={uploadThumbnail} />
                 {!loading && <section>
