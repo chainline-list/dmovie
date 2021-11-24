@@ -22,7 +22,6 @@ function VideoScreen() {
         try {
             await appContract.buyNFT(nftAddress,videoData.id.toNumber(), {value: ethers.utils.parseEther(videoData.price)})
             router.push('/')
-            console.log(ethers.utils.parseEther(`${videoData.price}`))
         } catch(err) {
             console.log(err)
         }
@@ -32,7 +31,10 @@ function VideoScreen() {
         <div className='videoScreen'>
 
             <video src={videoData.srcVid} autoPlay controls={true}></video>
-            {videoData.price != 0 && <button onClick={buyVideo}>You can buy this video at {videoData.price} matic</button>}
+            {videoData.price != 0 && <section onClick={buyVideo}>
+                <span>You can buy this video at {videoData.price} matic</span>
+                <button>BUY NOW {videoData.price}$</button>
+            </section>}
 
         </div>
     )

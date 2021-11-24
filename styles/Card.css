@@ -93,7 +93,7 @@
     margin-bottom: 5rem;
 }
 
-.videoScreen>button {
+.videoScreen>section {
     width: 35%;
     padding: 20px;
     border-radius: 7px;
@@ -103,6 +103,18 @@
     cursor: pointer;
     background-color: rgba(109,40,217,255);
     color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.videoScreen>section>button {
+    width: 70%;
+    border-radius: 9px;
+    padding: 10px 20px;
+    background-color: white;
+    color:rgba(109,40,217,255)
 }
 
 .videoScreen>button:hover {

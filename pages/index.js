@@ -44,7 +44,6 @@ export default function Home() {
       }))
       setItems(items)
       setLoading(false)
-      console.log(items)
     } catch(err) {
       console.log(err)
     }
