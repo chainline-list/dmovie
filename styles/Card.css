@@ -95,6 +95,7 @@
 
 .videoScreen>section {
     width: 35%;
+    height: 6rem;
     border-radius: 7px;
     font-size: 16px;
     font-weight: 700;
