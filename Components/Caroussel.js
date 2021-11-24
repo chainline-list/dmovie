@@ -47,7 +47,7 @@ function Caroussel({elements}) {
         dotListClass="custom-dot-list-style"
         itemClass="carousel-item-padding-10-px"
       >
-        {elements.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers} large/>)}
+        {elements.map(({nftId, watchingFee, price, usdPrice, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} usdPrice={usdPrice} viewers={viewers} large/>)}
       </Carousel>
     )
       

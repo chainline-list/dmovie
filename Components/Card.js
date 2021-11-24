@@ -6,7 +6,7 @@ import { ethers } from 'ethers'
 import { useRouter } from 'next/router'
 import {useDispatch} from 'react-redux'
 
-function Card({src, title, large, description,id, srcVid, watchingFee,viewers, price}) {
+function Card({src, title, large, description,id, srcVid, usdPrice, watchingFee,viewers, price}) {
 
     const router = useRouter()
     const dispatch = useDispatch()
@@ -27,7 +27,8 @@ function Card({src, title, large, description,id, srcVid, watchingFee,viewers, p
                     id,
                     srcVid,
                     title,
-                    price
+                    price, 
+                    usdPrice
                 }
             })
             router.push(`/video/${title}`)
@@ -41,7 +42,8 @@ function Card({src, title, large, description,id, srcVid, watchingFee,viewers, p
                     id,
                     srcVid,
                     title,
-                    price
+                    price,
+                    usdPrice
                 }
             })
             router.push(`/video/${title}`)

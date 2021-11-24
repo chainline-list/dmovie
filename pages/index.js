@@ -44,7 +44,6 @@ export default function Home() {
       }))
       setItems(items)
       setLoading(false)
-      console.log(items)
     } catch(err) {
       console.log(err)
     }
@@ -72,7 +71,7 @@ export default function Home() {
         <Caroussel elements ={carouselArray}/>
 
         <div className="items">
-          {items?.map(({nftId, watchingFee, price, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
+          {items?.map(({nftId, watchingFee, price, usdPrice, viewers, metadata}) => <Card key={nftId} id={nftId} src = {metadata.imgLink} title={metadata.title} description={metadata.description} srcVid={metadata.videoLink} usdPrice={usdPrice} watchingFee={watchingFee} price={price} viewers={viewers}/>)}
         </div>
 
         
