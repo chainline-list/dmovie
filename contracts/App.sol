@@ -17,6 +17,7 @@ contract App is ReentrancyGuard {
         uint tokenId;
         address payable owner;
         uint price;
+        int usdPrice;
         uint watchingFee;
         uint viewersCount;
         address[] Viewers;
@@ -24,7 +25,7 @@ contract App is ReentrancyGuard {
     mapping (uint256 => Item) private idToMarketItem;
 
     constructor() {
-        priceFeed = AggregatorV3Interface(0x9326BFA02ADD2366b30bacB125260Af641031331);
+        priceFeed = AggregatorV3Interface(0xd0D5e3DB44DE05E9F294BB0a3bEEaF030DE24Ada);
     }
 
     function getLatestPrice() public view returns (int) {
@@ -44,7 +45,9 @@ contract App is ReentrancyGuard {
     function mintNFT(address _nftContract, uint _tokenId, uint _price, uint _watchingFee) public {
         _itemIds.increment();
         uint itemID = _itemIds.current();
-        idToMarketItem[itemID] = Item(itemID, _nftContract, _tokenId, payable(msg.sender), _price, _watchingFee, 0, new address[](0));
+        int price = getLatestPrice();
+        int priceUSD = 10 ** 26 / price;
+        idToMarketItem[itemID] = Item(itemID, _nftContract, _tokenId, payable(msg.sender), _price, priceUSD, _watchingFee, 0, new address[](0));
         idToMarketItem[itemID].Viewers.push(msg.sender);
     }
 
@@ -55,8 +58,6 @@ contract App is ReentrancyGuard {
         item.owner.transfer(msg.value);
         IERC721(_nftContract).safeTransferFrom(item.owner, msg.sender, _nftId);
         idToMarketItem[_nftId].owner = payable(msg.sender);
-
-        /*payable(owner).transfer(listingPrice);*/
     }
 
     function payAccessibility(uint _itemId) public payable {

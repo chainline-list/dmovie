@@ -35,6 +35,7 @@ export default function Home() {
           nftId,
           watchingFee,
           price,
+          usdPrice,
           metadata,
           viewers
         }
@@ -42,6 +43,7 @@ export default function Home() {
       }))
       setItems(items)
       setLoading(false)
+      console.log(items)
     } catch(err) {
       console.log(err)
     }

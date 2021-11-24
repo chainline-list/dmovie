@@ -34,4 +34,3 @@ function NavBar() {
 }
 
 export default NavBar
-//<img src={Buffer} alt="" />
